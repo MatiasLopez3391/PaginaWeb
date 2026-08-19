@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>F97 SOFTWARE — Desarrollo de software a medida</title>
+  <meta name="description"
+    content="F97 SOFTWARE desarrolla soluciones tecnológicas, sistemas funcionales y landing pages a medida para pymes, comercios y emprendedores.">
+  <link rel="icon" href="images/favicon-f97.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="top">
+    <div class="nav__inner">
+      <a href="#top" class="nav__brand" aria-label="F97 SOFTWARE — inicio">
+        <img src="images/logo-f97-nav.png" alt="F97 SOFTWARE" class="nav__logo">
+      </a>
+
+      <nav class="nav__links" id="navLinks" aria-label="Navegación principal">
+        <a href="#que-es">Qué es</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#publico">Para quién</a>
+        <a href="#equipo">Equipo</a>
+        <a href="#contacto" class="nav__cta">Hablemos <span class="btn__ico">→</span></a>
+      </nav>
+
+      <button class="nav__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="hero__aurora" aria-hidden="true">
+        <span class="a1"></span><span class="a2"></span><span class="a3"></span>
+      </div>
+      <div class="hero__grid">
+        <div class="hero__copy">
+          <p class="eyebrow">DESARROLLO DE SOFTWARE A MEDIDA</p>
+          <h1 class="hero__title">Construimos el software que tu proyecto necesita para <span class="grad">mirar más
+              lejos</span></h1>
+          <p class="hero__lead">Somos un equipo de desarrolladores que transforma ideas en productos digitales sólidos:
+            sistemas de gestión, aplicaciones web y sitios que resuelven problemas reales. Sin plantillas enlatadas, sin
+            atajos.</p>
+          <div class="hero__actions">
+            <a href="#contacto" class="btn btn--gold">Empezar un proyecto <span class="btn__ico">→</span></a>
+            <a href="#servicios" class="btn btn--outline">Ver qué hacemos</a>
+          </div>
+          <p class="hero__note">Primera reunión y presupuesto sin cargo.</p>
+        </div>
+
+        <!-- Panel astronómico: signature del sitio -->
+        <div class="hero__visual" aria-hidden="true">
+          <div class="hero__ring"></div>
+          <div class="hero__circle">
+            <div class="starfield" id="starfield"></div>
+            <img src="images/icon-f97-telescope.png" alt="" class="hero__telescope-lg">
+          </div>
+          <div class="hero__badge">
+            <span class="stat__num">100%</span>
+            <span class="stat__label">código propio y documentado</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EMPRESAS QUE CONFÍAN (ISLAS) ============ -->
+    <section class="trust">
+      <div class="wrap">
+        <div class="trust__head">
+          <p class="eyebrow eyebrow--light">CLIENTES</p>
+          <h2 class="trust__title">Empresas y comercios que confían en nuestro trabajo</h2>
+        </div>
+
+        <div class="clients">
+          <!-- Para enlazar cada empresa en el futuro: cambiar href="#" por la URL real -->
+          <a class="client" href="#" target="_blank" rel="noopener" aria-label="ALTOMONTE">
+            <div class="client__face">
+              <img src="images/cli-altomonte.png" alt="ALTOMONTE" class="client__logo">
+            </div>
+            <div class="client__info">
+              <h3>Altomonte</h3>
+              <p>Marca con identidad y tradición familiar.</p>
+              <span class="client__link">Visitar sitio →</span>
+            </div>
+          </a>
+
+          <a class="client" href="#" target="_blank" rel="noopener" aria-label="AURA Centro de Estética">
+            <div class="client__face">
+              <img src="images/cli-aura.png" alt="AURA Centro de Estética" class="client__logo">
+            </div>
+            <div class="client__info">
+              <h3>Aura — Centro de Estética</h3>
+              <p>Estética y belleza con turnos online.</p>
+              <span class="client__link">Visitar sitio →</span>
+            </div>
+          </a>
+
+          <a class="client" href="#" target="_blank" rel="noopener" aria-label="BACAX S.R.L.">
+            <div class="client__face">
+              <img src="images/cli-bacax.png" alt="BACAX S.R.L." class="client__logo">
+            </div>
+            <div class="client__info">
+              <h3>Bacax S.R.L.</h3>
+              <p>Logística y transporte.</p>
+              <span class="client__link">Visitar sitio →</span>
+            </div>
+          </a>
+
+          <a class="client" href="#" target="_blank" rel="noopener" aria-label="TREMÜN">
+            <div class="client__face">
+              <img src="images/cli-tremun.png" alt="TREMÜN" class="client__logo">
+            </div>
+            <div class="client__info">
+              <h3>Tremün — Salgo a vivir</h3>
+              <p>Indumentaria y experiencias al aire libre.</p>
+              <span class="client__link">Visitar sitio →</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ QUÉ ES F97 ============ -->
+    <section class="section" id="que-es">
+      <div class="wrap feature">
+        <div class="feature__media">
+          <!-- Ilustración: panel de gestión, en SVG -->
+          <div class="mock mock--dash">
+            <div class="mock__top"><span></span><span></span><span></span></div>
+            <div class="mock__body">
+              <div class="mock__row">
+                <div class="mock__bar" style="--w:82%"></div><em>92</em>
+              </div>
+              <div class="mock__row">
+                <div class="mock__bar" style="--w:64%"></div><em>71</em>
+              </div>
+              <div class="mock__row">
+                <div class="mock__bar" style="--w:48%"></div><em>55</em>
+              </div>
+              <div class="mock__chart">
+                <svg viewBox="0 0 240 90" preserveAspectRatio="none">
+                  <polyline points="0,70 40,55 80,60 120,32 160,40 200,18 240,24" fill="none" />
+                  <polyline class="area" points="0,70 40,55 80,60 120,32 160,40 200,18 240,24 240,90 0,90"
+                    stroke="none" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="feature__text">
+          <p class="eyebrow">QUÉ ES F97</p>
+          <h2>Un socio técnico, no una fábrica de páginas</h2>
+          <p>F97 SOFTWARE nació en la facultad, de un grupo de desarrolladores con la convicción de que la buena
+            ingeniería puede cambiar la forma en que una empresa trabaja. No entregamos plantillas: escuchamos tu
+            problema, entendemos tu operación y diseñamos la solución técnica que mejor se adapta.</p>
+          <p>Como un buen telescopio, nos gusta mirar lejos. Pensamos en la escalabilidad, el mantenimiento y el
+            crecimiento futuro de cada producto, para que tu inversión siga rindiendo con el tiempo.</p>
+          <ul class="ticklist">
+            <li>Acompañamiento desde la idea hasta la puesta en producción</li>
+            <li>Código limpio, documentado y que queda en tu poder</li>
+            <li>Comunicación clara y avances visibles en cada etapa</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SERVICIOS ============ -->
+    <section class="section section--cream" id="servicios">
+      <div class="wrap">
+        <div class="section__head">
+          <p class="eyebrow">LO QUE HACEMOS</p>
+          <h2>Servicios que se adaptan a tu necesidad</h2>
+          <p class="section__sub">Desde una landing simple hasta un sistema completo a medida. Elegís por dónde empezar
+            y crecemos con vos.</p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="card__icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M4 4h16v12H4z" />
+                <path d="M2 20h20" />
+                <path d="M9 8l-2 2 2 2M15 8l2 2-2 2" />
+              </svg>
+            </div>
+            <h3>Soluciones tecnológicas</h3>
+            <p>Analizamos tu operación y proponemos la tecnología correcta para el problema, sin venderte de más. La
+              solución antes que la herramienta.</p>
+          </article>
+
+          <article class="card">
+            <div class="card__icon">
+              <svg viewBox="0 0 24 24">
+                <rect x="3" y="4" width="18" height="14" rx="2" />
+                <path d="M3 9h18M7 14h6" />
+              </svg>
+            </div>
+            <h3>Desarrollo de sistemas funcionales</h3>
+            <p>Sistemas de gestión a medida: stock, ventas, turnos, clientes, facturación y reportes. Reemplazá las
+              planillas por algo hecho para vos.</p>
+          </article>
+
+          <article class="card">
+            <div class="card__icon">
+              <svg viewBox="0 0 24 24">
+                <rect x="3" y="4" width="18" height="16" rx="2" />
+                <path d="M3 9h18M8 14h8M8 17h5" />
+              </svg>
+            </div>
+            <h3>Landing pages y sitios web</h3>
+            <p>Sitios rápidos, responsivos y pensados para convertir visitantes en clientes. Presencia online
+              profesional que representa tu marca.</p>
+          </article>
+
+          <article class="card">
+            <div class="card__icon">
+              <svg viewBox="0 0 24 24">
+                <rect x="7" y="2" width="10" height="20" rx="2" />
+                <path d="M11 18h2" />
+              </svg>
+            </div>
+            <h3>Aplicaciones web y móviles</h3>
+            <p>Plataformas con usuarios, roles y funcionalidades a medida. Accesibles desde cualquier dispositivo,
+              construidas para escalar.</p>
+          </article>
+
+          <article class="card">
+            <div class="card__icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 3v3M12 18v3M3 12h3M18 12h3M6 6l2 2M16 16l2 2M18 6l-2 2M8 16l-2 2" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+            </div>
+            <h3>Integraciones y automatización</h3>
+            <p>Conectamos tus herramientas —medios de pago, WhatsApp, facturación— y automatizamos tareas repetitivas
+              para ahorrarte tiempo.</p>
+          </article>
+
+          <article class="card">
+            <div class="card__icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                <path d="M9 12l2 2 4-4" />
+              </svg>
+            </div>
+            <h3>Mantenimiento y soporte</h3>
+            <p>No te dejamos solo tras el lanzamiento. Actualizaciones, mejoras continuas y soporte para que todo
+              funcione siempre.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PÚBLICO ============ -->
+    <section class="section" id="publico">
+      <div class="wrap">
+        <div class="section__head">
+          <p class="eyebrow">PARA QUIÉN TRABAJAMOS</p>
+          <h2>Pensado para quienes quieren crecer</h2>
+          <p class="section__sub">Trabajamos con equipos de distinto tamaño. Si tenés un problema que la tecnología
+            puede resolver, tenemos algo para vos.</p>
+        </div>
+
+        <div class="audience">
+          <article class="aud">
+            <span class="aud__ico">🏢</span>
+            <h3>Pymes</h3>
+            <p>Ordená procesos, centralizá la información y tomá decisiones con datos reales en lugar de planillas
+              dispersas.</p>
+          </article>
+          <article class="aud">
+            <span class="aud__ico">🛍️</span>
+            <h3>Locales y comercios</h3>
+            <p>Control de stock, ventas y clientes, más presencia online para que te encuentren y te elijan.</p>
+          </article>
+          <article class="aud">
+            <span class="aud__ico">🚀</span>
+            <h3>Emprendedores y startups</h3>
+            <p>Validá tu idea con un primer producto funcional y hacelo crecer por etapas, sin sobreinvertir de entrada.
+            </p>
+          </article>
+          <article class="aud">
+            <span class="aud__ico">⚕️</span>
+            <h3>Profesionales y estudios</h3>
+            <p>Turnos, agenda, historiales y una web profesional que refleje la seriedad de tu servicio.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EQUIPO ============ -->
+    <section class="section section--dark" id="equipo">
+      <div class="wrap">
+        <div class="section__head section__head--light">
+          <p class="eyebrow eyebrow--light">QUIÉNES SOMOS</p>
+          <h2>Los desarrolladores detrás de F97</h2>
+          <p class="section__sub section__sub--light">Un equipo joven formado en la facultad, apasionado por construir
+            cosas bien hechas. Estos son los nombres detrás de cada línea de código.</p>
+        </div>
+
+        <div class="team">
+          <article class="dev">
+            <div class="dev__avatar" data-ini="ML"></div>
+            <h3>Matías López</h3>
+            <p class="dev__role">Full-Stack Developer</p>
+          </article>
+          <article class="dev">
+            <div class="dev__avatar" data-ini="ZG"></div>
+            <h3>Zoe García Badiola</h3>
+            <p class="dev__role">Frontend Developer</p>
+          </article>
+          <article class="dev">
+            <div class="dev__avatar" data-ini="IA"></div>
+            <h3>Ignacio Ayala Poquet</h3>
+            <p class="dev__role">Backend Developer</p>
+          </article>
+          <article class="dev">
+            <div class="dev__avatar" data-ini="GM"></div>
+            <h3>Gonzalo Mascareño</h3>
+            <p class="dev__role">UI / UX &amp; QA</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TESTIMONIAL ============ -->
+    <section class="section section--cream">
+      <div class="wrap quote">
+        <p class="quote__mark">✦</p>
+        <blockquote class="quote__text">Necesitábamos ordenar todo el negocio y F97 nos entregó un sistema que realmente
+          entiende cómo trabajamos. Claros, presentes y muy profesionales.</blockquote>
+        <p class="quote__author"><strong>Nombre del cliente</strong> — Comercio / Empresa <span
+            class="quote__hint">(reemplazar por un testimonio real)</span></p>
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="cta" id="contacto">
+      <div class="cta__aura" aria-hidden="true"><span class="b1"></span><span class="b2"></span></div>
+      <div class="wrap cta__inner">
+        <h2>¿Tenés un proyecto en mente?</h2>
+        <p>Contanos qué necesitás y te decimos cómo lo resolvemos. La primera charla es sin cargo y sin compromiso.</p>
+        <div class="cta__actions">
+          <a href="mailto:f97.software@gmail.com" class="btn btn--gold">Escribinos por email <span
+              class="btn__ico">→</span></a>
+          <a href="https://instagram.com/f97.software" target="_blank" rel="noopener" class="btn btn--glass">Seguinos en
+            Instagram</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="wrap footer__grid">
+      <div class="footer__brand">
+        <img src="images/logo-f97-footer.png" alt="F97 SOFTWARE" class="footer__logo">
+        <p>Desarrollo de software a medida. Transformamos ideas en productos digitales que hacen crecer tu proyecto.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Navegación</h4>
+        <a href="#que-es">Qué es F97</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#publico">Para quién</a>
+        <a href="#equipo">Equipo</a>
+      </div>
+      <div class="footer__col">
+        <h4>Servicios</h4>
+        <a href="#servicios">Sistemas a medida</a>
+        <a href="#servicios">Landing pages</a>
+        <a href="#servicios">Apps web y móviles</a>
+        <a href="#servicios">Mantenimiento</a>
+      </div>
+      <div class="footer__col">
+        <h4>Contacto</h4>
+        <a href="mailto:f97.software@gmail.com">f97.software@gmail.com</a>
+        <a href="https://instagram.com/f97.software" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://facebook.com/f97.software" target="_blank" rel="noopener">Facebook</a>
+      </div>
+    </div>
+    <div class="footer__bottom wrap">
+      <p>© 2025 F97 SOFTWARE — Todos los derechos reservados.</p>
+      <p>Hecho con dedicación por el equipo de F97.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
