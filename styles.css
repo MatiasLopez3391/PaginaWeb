@@ -524,57 +524,29 @@ img {
 
 .hero__circle {
   position: relative;
-  width: clamp(260px, 33vw, 420px);
-  height: clamp(260px, 33vw, 420px);
+  width: clamp(280px, 37vw, 460px);
+  height: clamp(280px, 37vw, 460px);
   border-radius: 50%;
-  overflow: hidden;
-  background: radial-gradient(120% 120% at 30% 20%, #5b96ec 0%, #2c5fb0 48%, #132a56 100%);
-  box-shadow: 0 30px 70px -20px rgba(20, 38, 80, .55), inset 0 0 0 1px rgba(255, 255, 255, .25);
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.hero__circle .starfield {
-  position: absolute;
-  inset: 0
-}
-
-.starfield i {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  border-radius: 50%;
-  background: #fff;
-  opacity: .7;
-  animation: twinkle 3s infinite ease-in-out
-}
-
-@keyframes twinkle {
-
-  0%,
-  100% {
-    opacity: .2
-  }
-
-  50% {
-    opacity: .9
-  }
-}
-
 .hero__telescope-lg {
   position: relative;
   z-index: 1;
-  width: 70%;
-  height: 70%;
+  width: 91%;
+  height: 91%;
   object-fit: contain;
-  filter: drop-shadow(0 14px 30px rgba(8, 15, 40, .5));
+  filter: drop-shadow(0 14px 30px rgba(8, 15, 40, .35));
 }
 
 .hero__badge {
   position: absolute;
   left: -6px;
   bottom: 6%;
+  z-index: 10;
   padding: 16px 22px;
   display: flex;
   flex-direction: column;
@@ -659,6 +631,7 @@ img {
   pointer-events: none;
   background: linear-gradient(140deg, rgba(143, 193, 251, .9), rgba(111, 208, 255, .6));
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   opacity: 0;
@@ -977,6 +950,7 @@ img {
   pointer-events: none;
   background: linear-gradient(140deg, var(--gold), rgba(111, 208, 255, .7));
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   opacity: 0;
@@ -1456,5 +1430,376 @@ img {
   .reveal {
     opacity: 1;
     transform: none
+  }
+}
+
+/* =========================================================
+   TELESCOPIO INTERACTIVO — logo en dos capas + circuito
+   disco  <  circuito  <  telescopio  (el circuito nunca queda encima)
+   ========================================================= */
+.scope {
+  position: relative;
+  width: clamp(300px, 38vw, 480px);
+  height: clamp(300px, 38vw, 480px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scope .hero__ring {
+  transition: border-color .5s var(--ease), box-shadow .5s var(--ease)
+}
+
+.scope.is-live .hero__ring {
+  border-color: rgba(111, 208, 255, .8);
+  box-shadow: 0 0 44px -6px rgba(111, 208, 255, .5), inset 0 0 70px -34px rgba(63, 127, 224, .55)
+}
+
+.scope .hero__circle {
+  cursor: pointer;
+  display: block;
+  overflow: visible
+}
+
+/* Las dos capas del logo comparten exactamente la misma caja */
+.hero__disc,
+.scope .hero__telescope-lg {
+  position: absolute;
+  left: 4.5%;
+  top: 4.5%;
+  width: 91%;
+  height: 91%;
+  object-fit: contain
+}
+
+.hero__disc {
+  z-index: 1;
+  filter: drop-shadow(0 14px 30px rgba(8, 15, 40, .3));
+  transition: filter .6s var(--ease)
+}
+
+.scope.is-live .hero__disc {
+  filter: drop-shadow(0 14px 30px rgba(8, 15, 40, .3)) drop-shadow(0 0 26px rgba(111, 208, 255, .5))
+}
+
+/* El telescopio apunta y escanea */
+.scope .hero__telescope-lg {
+  z-index: 3;
+  transform-origin: 50.5% 54.5%;
+  filter: drop-shadow(0 4px 10px rgba(8, 15, 40, .3));
+  transition: transform .8s var(--ease), filter .6s var(--ease)
+}
+
+.scope.is-live .hero__telescope-lg {
+  filter: drop-shadow(0 4px 10px rgba(8, 15, 40, .3)) drop-shadow(0 0 12px rgba(180, 220, 255, .9));
+  animation: scopeScan 6s var(--ease) infinite
+}
+
+@keyframes scopeScan {
+  0% {
+    transform: rotate(0) scale(1)
+  }
+
+  36% {
+    transform: rotate(-4.2deg) scale(1.02)
+  }
+
+  64% {
+    transform: rotate(-1.4deg) scale(1.01)
+  }
+
+  100% {
+    transform: rotate(0) scale(1)
+  }
+}
+
+/* --- Lienzo del circuito: entre el disco y el telescopio --- */
+.scope__net {
+  position: absolute;
+  left: -26%;
+  top: -26%;
+  width: 152%;
+  height: 152%;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 2
+}
+
+/* La red acompaña el movimiento del tubo: misma cadencia, menor amplitud */
+.scope__web {
+  transform-box: view-box;
+  transform-origin: 503px 527px;
+  transition: transform .8s var(--ease)
+}
+
+.scope.is-live .scope__web {
+  animation: webDrag 6s var(--ease) infinite
+}
+
+@keyframes webDrag {
+  0% {
+    transform: rotate(0)
+  }
+
+  36% {
+    transform: rotate(-1.5deg)
+  }
+
+  64% {
+    transform: rotate(-.5deg)
+  }
+
+  100% {
+    transform: rotate(0)
+  }
+}
+
+/* --- Pistas --- */
+.scope__net .tr {
+  fill: none;
+  stroke: var(--gold-soft);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: var(--len);
+  stroke-dashoffset: var(--len);
+  opacity: 0;
+  transition: stroke-dashoffset .9s var(--ease), opacity .25s ease;
+  transition-delay: var(--d)
+}
+
+.scope__net .tr--halo {
+  stroke: var(--violet);
+  stroke-width: 11;
+  filter: blur(4px)
+}
+
+.scope.is-live .tr {
+  opacity: 1;
+  stroke-dashoffset: 0
+}
+
+.scope.is-live .tr--halo {
+  opacity: .32
+}
+
+.scope__net .tr--pulse {
+  stroke: #fff;
+  stroke-width: 3.8;
+  stroke-dasharray: 18 var(--len);
+  stroke-dashoffset: 0;
+  opacity: 0;
+  transition: opacity .3s ease .85s
+}
+
+.scope.is-live .tr--pulse {
+  opacity: 1;
+  animation: dataFlow 2.8s linear infinite;
+  animation-delay: var(--pd)
+}
+
+@keyframes dataFlow {
+  from {
+    stroke-dashoffset: 0
+  }
+
+  to {
+    stroke-dashoffset: var(--nlen)
+  }
+}
+
+/* --- Nodos: estrellas --- */
+.scope__net .node {
+  opacity: 0;
+  transform: scale(.2);
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: opacity .4s ease, transform .55s cubic-bezier(.34, 1.56, .64, 1);
+  transition-delay: var(--nd)
+}
+
+.scope.is-live .node {
+  opacity: 1;
+  transform: scale(1)
+}
+
+.node__glow {
+  fill: var(--violet);
+  opacity: .3
+}
+
+.node__ray {
+  fill: #eaf5ff
+}
+
+.node__ray--sm {
+  fill: var(--gold-soft);
+  opacity: .8
+}
+
+.node__core {
+  fill: #fff
+}
+
+.node__via {
+  fill: none;
+  stroke: var(--gold-soft);
+  stroke-width: 2.4
+}
+
+.node__tag {
+  fill: var(--gold-600);
+  font-family: var(--font-mono);
+  font-size: 22px;
+  letter-spacing: .06em;
+  opacity: .9
+}
+
+.scope.is-live .node__glow {
+  animation: twinkle 3s var(--ease) infinite;
+  animation-delay: var(--nd)
+}
+
+@keyframes twinkle {
+
+  0%,
+  100% {
+    opacity: .28;
+    transform: scale(1)
+  }
+
+  50% {
+    opacity: .62;
+    transform: scale(1.4)
+  }
+}
+
+/* --- Barrido de luz sobre el logo --- */
+.scope__sweep {
+  position: absolute;
+  left: 4.5%;
+  top: 4.5%;
+  width: 91%;
+  height: 91%;
+  border-radius: 50%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 4;
+  opacity: 0;
+  transition: opacity .45s var(--ease)
+}
+
+.scope.is-live .scope__sweep {
+  opacity: 1
+}
+
+.scope__sweep::after {
+  content: "";
+  position: absolute;
+  top: -30%;
+  left: -55%;
+  width: 32%;
+  height: 160%;
+  background: linear-gradient(100deg, transparent, rgba(190, 226, 255, .7), transparent);
+  filter: blur(7px);
+  mix-blend-mode: screen;
+  transform: translateX(0) rotate(16deg)
+}
+
+.scope.is-live .scope__sweep::after {
+  animation: scopeSweep 3.6s var(--ease) infinite
+}
+
+@keyframes scopeSweep {
+  0% {
+    transform: translateX(0) rotate(16deg);
+    opacity: 0
+  }
+
+  15% {
+    opacity: 1
+  }
+
+  85% {
+    opacity: 1
+  }
+
+  100% {
+    transform: translateX(430%) rotate(16deg);
+    opacity: 0
+  }
+}
+
+/* --- Destello en la lente --- */
+.scope__flare {
+  position: absolute;
+  left: 76%;
+  top: 27%;
+  width: 24%;
+  height: 24%;
+  margin: -12% 0 0 -12%;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, .95) 0%, rgba(143, 193, 251, .55) 30%, rgba(111, 208, 255, 0) 68%);
+  transition: opacity .5s var(--ease)
+}
+
+.scope.is-live .scope__flare {
+  opacity: 1;
+  animation: flarePulse 2.8s var(--ease) infinite
+}
+
+@keyframes flarePulse {
+
+  0%,
+  100% {
+    transform: scale(.85);
+    opacity: .5
+  }
+
+  50% {
+    transform: scale(1.15);
+    opacity: 1
+  }
+}
+
+/* --- CTA sobre la base del logo --- */
+.scope__cta {
+  position: absolute;
+  left: 50%;
+  bottom: 2%;
+  transform: translateX(-50%);
+  z-index: 12
+}
+
+.scope__btn {
+  white-space: nowrap;
+  transition: transform .28s var(--ease), box-shadow .28s var(--ease), filter .28s var(--ease)
+}
+
+.scope.is-live .scope__btn {
+  transform: translateY(-4px);
+  filter: saturate(1.12) brightness(1.04);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .5), 0 18px 48px -8px rgba(63, 127, 224, .8), 0 0 0 7px rgba(111, 208, 255, .16)
+}
+
+@media (max-width:720px) {
+  .scope {
+    width: min(300px, 82vw);
+    height: min(300px, 82vw)
+  }
+
+  .scope__cta {
+    bottom: -6%
+  }
+
+  .scope__btn {
+    font-size: .92rem;
+    padding: 14px 22px
+  }
+
+  .node__tag {
+    font-size: 30px
   }
 }
