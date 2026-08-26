@@ -56,20 +56,36 @@
             sistemas de gestión, aplicaciones web y sitios que resuelven problemas reales. Sin plantillas enlatadas, sin
             atajos.</p>
           <div class="hero__actions">
-            <a href="#contacto" class="btn btn--gold">Empezar un proyecto <span class="btn__ico">→</span></a>
             <a href="#servicios" class="btn btn--outline">Ver qué hacemos</a>
           </div>
           <p class="hero__note">Primera reunión y presupuesto sin cargo.</p>
         </div>
 
         <!-- Panel astronómico: signature del sitio -->
-        <div class="hero__visual" aria-hidden="true">
-          <div class="hero__ring"></div>
-          <div class="hero__circle">
-            <div class="starfield" id="starfield"></div>
-            <img src="images/icon-f97-telescope.png" alt="" class="hero__telescope-lg">
+        <div class="hero__visual">
+          <!-- .scope: telescopio + red de nodos + CTA. El hover sobre el logo O sobre el botón activa la animación -->
+          <div class="scope" id="scope">
+            <div class="hero__ring" aria-hidden="true"></div>
+            <div class="hero__circle">
+              <!-- Capa 1: fondo circular azul, separado del telescopio -->
+              <img src="images/f97-disc.png" alt="" class="hero__disc">
+              <!-- Capa 2: circuito — delante del disco, detrás del telescopio -->
+              <svg class="scope__net" viewBox="0 0 1000 1000" aria-hidden="true" focusable="false">
+                <g class="scope__web">
+                  <g class="scope__traces"></g>
+                  <g class="scope__nodes"></g>
+                </g>
+              </svg>
+              <!-- Capa 3: silueta del telescopio -->
+              <img src="images/f97-telescope-only.png" alt="" class="hero__telescope-lg">
+              <span class="scope__sweep" aria-hidden="true"></span>
+              <span class="scope__flare" aria-hidden="true"></span>
+            </div>
+            <div class="scope__cta">
+              <a href="#contacto" class="btn btn--gold scope__btn">Empezar un proyecto <span class="btn__ico">→</span></a>
+            </div>
           </div>
-          <div class="hero__badge">
+          <div class="hero__badge" aria-hidden="true">
             <span class="stat__num">100%</span>
             <span class="stat__label">código propio y documentado</span>
           </div>
