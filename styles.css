@@ -1039,39 +1039,71 @@ img {
 
 .card {
   position: relative;
+  isolation: isolate;
   background: var(--surface);
   border: 1px solid var(--surface-border);
   border-radius: var(--r);
   padding: 34px 30px;
-  transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s var(--ease);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
 }
 
-.card::before {
+/* Borde degradado Cian (#03a9f4) a Rosa/Violeta (#f441a5) */
+.card::before,
+.aud::before,
+.dev::before {
   content: "";
   position: absolute;
-  inset: 0;
-  border-radius: var(--r);
-  padding: 1px;
-  pointer-events: none;
-  background: linear-gradient(140deg, var(--gold), rgba(111, 208, 255, .7));
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(135deg, #03a9f4 0%, #f441a5 100%);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   opacity: 0;
-  transition: opacity .3s var(--ease);
+  pointer-events: none;
+  transition: opacity 0.4s var(--ease);
+  z-index: 2;
 }
 
-.card:hover {
+/* Aura difuminada neón detrás de la tarjeta */
+.card::after,
+.aud::after,
+.dev::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, #03a9f4 0%, #f441a5 100%);
+  opacity: 0;
+  filter: blur(20px);
+  z-index: -1;
+  pointer-events: none;
+  transition: opacity 0.4s var(--ease), filter 0.4s var(--ease);
+}
+
+.card:hover::before,
+.aud:hover::before,
+.dev:hover::before {
+  opacity: 1;
+}
+
+.card:hover::after,
+.aud:hover::after,
+.dev:hover::after {
+  opacity: 0.45;
+  filter: blur(26px);
+}
+
+.card:hover,
+.aud:hover,
+.dev:hover {
   transform: translateY(-8px);
-  box-shadow: var(--shadow)
-}
-
-.card:hover::before {
-  opacity: 1
+  border-color: transparent;
 }
 
 .card__icon {
@@ -1124,6 +1156,7 @@ img {
 
 .aud {
   position: relative;
+  isolation: isolate;
   background: var(--surface);
   border-radius: var(--r);
   padding: 32px 28px;
@@ -1131,30 +1164,7 @@ img {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  transition: transform .3s var(--ease), box-shadow .3s var(--ease);
-  overflow: hidden;
-}
-
-.aud::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 3px;
-  background: linear-gradient(180deg, var(--gold), var(--violet));
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform .35s var(--ease)
-}
-
-.aud:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-sm)
-}
-
-.aud:hover::after {
-  transform: scaleY(1)
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s var(--ease);
 }
 
 .aud__ico {
@@ -1192,6 +1202,7 @@ img {
 
 .dev {
   position: relative;
+  isolation: isolate;
   border-radius: var(--r);
   padding: 32px 26px;
   text-align: center;
@@ -1199,13 +1210,7 @@ img {
   border: 1px solid rgba(143, 193, 251, .16);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  transition: transform .3s var(--ease), border-color .3s var(--ease), background .3s var(--ease);
-}
-
-.dev:hover {
-  transform: translateY(-8px);
-  border-color: rgba(143, 193, 251, .5);
-  background: rgba(10, 16, 48, .52)
+  transition: transform .35s var(--ease), border-color .35s var(--ease), background .35s var(--ease);
 }
 
 .dev__avatar {
