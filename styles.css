@@ -251,24 +251,51 @@ img {
 }
 
 .nav__inner {
-  max-width: var(--wrap);
-  margin: 0 auto;
-  padding: 16px 24px;
+  position: relative;
+  max-width: none;
+  margin: 0;
+  padding: 16px clamp(24px, 5vw, 64px);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  background: rgba(2, 6, 23, .6);
-  backdrop-filter: saturate(160%) blur(14px);
-  -webkit-backdrop-filter: saturate(160%) blur(14px);
-  border: 1px solid var(--line);
-  border-radius: 0 0 20px 20px;
-  transition: box-shadow .3s var(--ease), background .3s var(--ease);
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  overflow: hidden;
 }
 
-.nav.scrolled .nav__inner {
-  background: rgba(2, 6, 23, .85);
+/* Capa de color: arranca invisible (nav transparente arriba) y la sube el JS */
+.nav__fill {
+  position: absolute;
+  inset: 0;
+  border-radius: 0;
+  background: rgba(2, 6, 23, .82);
+  border: 0;
+  border-bottom: 1px solid var(--surface-border);
+  backdrop-filter: saturate(160%) blur(14px);
+  -webkit-backdrop-filter: saturate(160%) blur(14px);
   box-shadow: 0 10px 30px -18px rgba(0, 0, 0, .6);
+  opacity: 0;
+  transition: opacity .12s linear;
+  pointer-events: none;
+}
+
+/* Constelación dentro de la barra */
+.nav__stars {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.nav__brand,
+.nav__links,
+.nav__toggle {
+  position: relative;
+  z-index: 2;
 }
 
 .nav__logo {
@@ -367,69 +394,21 @@ img {
 .hero {
   position: relative;
   overflow: hidden;
-  padding: 96px 0 104px;
-  background: var(--paper)
+  padding: 148px 0 104px;
+  margin-top: -74px;
+  background:
+    radial-gradient(120% 90% at 72% 12%, rgba(56, 189, 248, .13), transparent 62%),
+    radial-gradient(80% 70% at 8% 88%, rgba(129, 140, 248, .10), transparent 65%),
+    var(--paper);
 }
 
-/* Aurora / nebulosa: blobs difuminados que derivan lento */
-.hero__aurora {
+/* Cielo interactivo: las estrellas reaccionan al cursor */
+.hero__stars {
   position: absolute;
-  inset: -20% -10%;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   z-index: 0;
-  filter: blur(70px);
-  opacity: .9;
-  pointer-events: none
-}
-
-.hero__aurora span {
-  position: absolute;
-  border-radius: 50%;
-  mix-blend-mode: multiply
-}
-
-.hero__aurora .a1 {
-  width: 46%;
-  height: 70%;
-  left: 52%;
-  top: -8%;
-  background: radial-gradient(circle, rgba(63, 127, 224, .55), transparent 65%);
-  animation: drift1 18s var(--ease) infinite alternate
-}
-
-.hero__aurora .a2 {
-  width: 42%;
-  height: 60%;
-  left: 60%;
-  top: 24%;
-  background: radial-gradient(circle, rgba(111, 208, 255, .4), transparent 65%);
-  animation: drift2 22s var(--ease) infinite alternate
-}
-
-.hero__aurora .a3 {
-  width: 38%;
-  height: 52%;
-  left: -6%;
-  top: 36%;
-  background: radial-gradient(circle, rgba(207, 224, 247, .7), transparent 60%);
-  animation: drift3 20s var(--ease) infinite alternate
-}
-
-@keyframes drift1 {
-  to {
-    transform: translate(-8%, 10%) scale(1.1)
-  }
-}
-
-@keyframes drift2 {
-  to {
-    transform: translate(-14%, -8%) scale(1.15)
-  }
-}
-
-@keyframes drift3 {
-  to {
-    transform: translate(10%, -6%) scale(1.08)
-  }
 }
 
 .hero__grid {
@@ -764,7 +743,49 @@ img {
    SECCIONES GENÉRICAS
    ========================================================= */
 .section {
+  position: relative;
+  overflow: hidden;
   padding: 100px 0
+}
+
+/* Cielo animado de fondo (mismo campo que el hero y la navbar) */
+.section__stars {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Un único cielo detrás de las dos secciones: sin corte ni línea divisoria */
+.sky {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(70% 40% at 78% 6%, rgba(56, 189, 248, .09), transparent 62%),
+    radial-gradient(60% 40% at 4% 94%, rgba(129, 140, 248, .08), transparent 65%),
+    var(--paper);
+}
+
+.sky__stars {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sky .section {
+  background: transparent;
+  border: 0;
+}
+
+.sky .wrap,
+#equipo .wrap {
+  position: relative;
+  z-index: 1;
 }
 
 .section--cream {
