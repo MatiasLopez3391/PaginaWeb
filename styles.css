@@ -1761,6 +1761,7 @@ img {
   width: clamp(300px, 38vw, 480px);
   height: clamp(300px, 38vw, 480px);
   border-radius: 50%;
+  z-index: 1;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
@@ -1773,6 +1774,21 @@ img {
 #constellationCanvas:hover {
   border-color: rgba(56, 189, 248, 0.5);
   box-shadow: 0 0 60px -10px rgba(56, 189, 248, 0.4), inset 0 0 40px rgba(56, 189, 248, 0.15);
+}
+
+/* Imagen del telescopio metálico sobre el canvas de constelaciones */
+.hero__telescope-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -52%);
+  width: clamp(260px, 34vw, 420px);
+  height: auto;
+  max-height: clamp(260px, 34vw, 420px);
+  object-fit: contain;
+  z-index: 5; /* Por delante de las constelaciones (z-index 1) y por detrás del botón (z-index 12) y del badge (z-index 10) */
+  pointer-events: none; /* Permite interactuar con la red neuronal/constelaciones sin bloquear el mouse */
+  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.65));
 }
 
 /* --- CTA sobre la base del logo --- */
