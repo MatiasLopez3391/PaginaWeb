@@ -221,18 +221,46 @@ img {
   transform: translateY(-3px)
 }
 
-/* Contorno — para fondos claros */
+/* Contorno con borde degradado neón + glow estilo Uiverse (Fondo Azul Oscuro) */
 .btn--outline {
-  background: rgba(255, 255, 255, .03);
-  color: var(--ink);
-  border-color: rgba(255, 255, 255, .15);
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background: linear-gradient(#0b1329, #0b1329) padding-box, linear-gradient(90deg, #03a9f4, #f441a5) border-box;
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+
+.btn--outline::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  margin: auto;
+  border-radius: 999px;
+  z-index: -1;
+  background: linear-gradient(90deg, #03a9f4, #f441a5);
+  opacity: 0;
+  filter: blur(0);
+  transition: filter 0.4s ease, opacity 0.4s ease;
+}
+
+.btn--outline:hover::before {
+  opacity: 1;
+  filter: blur(1.2em);
+}
+
+.btn--outline:active::before {
+  filter: blur(0.2em);
 }
 
 .btn--outline:hover {
-  background: rgba(255, 255, 255, .1);
-  color: #fff;
-  border-color: rgba(255, 255, 255, .3);
-  transform: translateY(-3px)
+  background: linear-gradient(#0f172a, #0f172a) padding-box, linear-gradient(90deg, #03a9f4, #f441a5) border-box;
+  color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(3, 169, 244, 0.3);
 }
 
 .btn:focus-visible {
@@ -342,20 +370,47 @@ img {
 }
 
 .nav__cta {
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  background: var(--navy);
-  color: #fff !important;
-  padding: 11px 20px;
+  padding: 11px 22px;
   border-radius: 999px;
-  transition: background .25s var(--ease), transform .25s var(--ease), box-shadow .25s var(--ease);
+  border: 2px solid transparent;
+  background: linear-gradient(#0b1329, #0b1329) padding-box, linear-gradient(90deg, #03a9f4, #f441a5) border-box;
+  color: #fff !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+
+.nav__cta::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  margin: auto;
+  border-radius: 999px;
+  z-index: -1;
+  background: linear-gradient(90deg, #03a9f4, #f441a5);
+  opacity: 0;
+  filter: blur(0);
+  transition: filter 0.4s ease, opacity 0.4s ease;
+}
+
+.nav__cta:hover::before {
+  opacity: 1;
+  filter: blur(1.2em);
+}
+
+.nav__cta:active::before {
+  filter: blur(0.2em);
 }
 
 .nav__cta:hover {
-  background: var(--navy-600);
+  background: linear-gradient(#0f172a, #0f172a) padding-box, linear-gradient(90deg, #03a9f4, #f441a5) border-box;
   transform: translateY(-2px);
-  box-shadow: 0 10px 24px -12px rgba(25, 38, 80, .8)
+  box-shadow: 0 8px 25px rgba(3, 169, 244, 0.3);
 }
 
 .nav__toggle {
