@@ -178,3 +178,90 @@ document.addEventListener('DOMContentLoaded', function () {
     animate();
   }, 50);
 })();
+
+/* =========================================================
+   5. Estrellas de fondo para sección Servicios
+   ========================================================= */
+(function () {
+  const canvas = document.getElementById('serviciosStars');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, stars = [];
+
+  // Dibuja una estrella de 4 puntas centrada en (cx, cy)
+  function drawStar(cx, cy, outerR, opacity, blur) {
+    const innerR = outerR * 0.25;
+    const points = 4;
+    ctx.save();
+    if (blur > 0) {
+      ctx.shadowBlur = blur;
+      ctx.shadowColor = `rgba(56,189,248,${opacity})`;
+    }
+    ctx.beginPath();
+    for (let i = 0; i < points * 2; i++) {
+      const angle = (i * Math.PI) / points - Math.PI / 2;
+      const r = i % 2 === 0 ? outerR : innerR;
+      const x = cx + Math.cos(angle) * r;
+      const y = cy + Math.sin(angle) * r;
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.fillStyle = `rgba(56,189,248,${opacity})`;
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function resize() {
+    const rect = canvas.parentElement.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    canvas.style.width = rect.width + 'px';
+    canvas.style.height = rect.height + 'px';
+    ctx.scale(dpr, dpr);
+    W = rect.width;
+    H = rect.height;
+  }
+
+  function spawnStars() {
+    stars = [];
+    // Más densas en los extremos, más escasas en el centro (donde va el contenido)
+    const count = Math.floor((W * H) / 6000);
+    for (let i = 0; i < count; i++) {
+      stars.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        // Tamaño variado: mayoría pequeñas, pocas grandes
+        r: Math.random() < 0.85 ? Math.random() * 1.5 + 0.4 : Math.random() * 3.5 + 1.5,
+        baseOpacity: Math.random() * 0.35 + 0.05,
+        // Cada estrella tiene su propia fase y velocidad de parpadeo
+        phase: Math.random() * Math.PI * 2,
+        speed: 0.003 + Math.random() * 0.008,
+        blur: Math.random() < 0.15 ? Math.random() * 6 + 2 : 0, // Sólo ~15% con halo
+      });
+    }
+  }
+
+  let frame = 0;
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    frame++;
+    stars.forEach(s => {
+      // Parpadeo suave con seno de baja frecuencia
+      const twinkle = Math.sin(s.phase + frame * s.speed);
+      const opacity = s.baseOpacity + twinkle * s.baseOpacity * 0.5;
+      drawStar(s.x, s.y, s.r, Math.max(0, opacity), s.blur);
+    });
+    requestAnimationFrame(draw);
+  }
+
+  function init() {
+    resize();
+    spawnStars();
+    draw();
+  }
+
+  window.addEventListener('resize', () => { resize(); spawnStars(); });
+  // Esperar a que la sección esté pintada
+  setTimeout(init, 80);
+})();
