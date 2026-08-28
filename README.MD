@@ -1,10 +1,10 @@
-# Maylo Software | Sitio Web Institucional
+# F97 Software | Sitio Web Institucional
 
 > **Potenciamos tu negocio con soluciones tecnológicas a medida.**
 
 ## Descripción
 
-Este repositorio contiene el desarrollo del sitio web institucional de **Maylo Software**.
+Este repositorio contiene el desarrollo del sitio web institucional de **F97 Software**.
 
 El objetivo principal del proyecto es crear una página que represente la identidad de la empresa y funcione como un canal de presentación y contacto con potenciales clientes.
 
@@ -14,7 +14,7 @@ A medida que el proyecto evolucione, el sitio podrá incorporar nuevas secciones
 
 ## Objetivos del proyecto
 
-* Diseñar una imagen profesional para Maylo Software.
+* Diseñar una imagen profesional para F97 Software.
 * Presentar los servicios ofrecidos por la empresa.
 * Mostrar proyectos y trabajos realizados.
 * Dar visibilidad a clientes y casos de éxito.
