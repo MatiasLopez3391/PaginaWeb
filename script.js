@@ -34,6 +34,23 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  // Cerrar el menú al tocar fuera o presionar Escape
+  document.addEventListener('click', function (e) {
+    if (links.classList.contains('open') && !links.contains(e.target) && !toggle.contains(e.target)) {
+      links.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Abrir menú');
+    }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && links.classList.contains('open')) {
+      links.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Abrir menú');
+    }
+  });
+
 
   /* ---------- 3. Animaciones al hacer scroll ---------- */
   const revealTargets = document.querySelectorAll(
