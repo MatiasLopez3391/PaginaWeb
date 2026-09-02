@@ -51,6 +51,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
+  /* ---------- 2. Evitar arrastre de imágenes y selección de texto ---------- */
+  document.addEventListener('dragstart', function (e) {
+    if (e.target.tagName === 'IMG' || e.target.closest('img')) {
+      e.preventDefault();
+    }
+  });
+
 
   /* ---------- 3. Animaciones al hacer scroll ---------- */
   const revealTargets = document.querySelectorAll(
