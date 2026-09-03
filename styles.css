@@ -201,15 +201,161 @@ img {
   transform: translateX(4px)
 }
 
-/* Primario dorado con brillo + barrido */
-.btn--gold {
-  background: linear-gradient(135deg, var(--gold-soft) 0%, var(--gold) 52%, var(--gold-600) 100%);
-  color: #ffffff;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .5), var(--glow-gold);
+.btn svg {
+  flex-shrink: 0;
+  transition: transform 0.3s var(--ease), fill 0.3s ease;
 }
 
+.btn:hover svg {
+  transform: scale(1.12);
+}
+
+/* 1. Primario / Email Glassmorphism (Cyan Neón F97) */
+.btn--email,
+.btn--gold {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.22) 0%, rgba(14, 165, 233, 0.12) 100%);
+  color: #ffffff !important;
+  border: 1px solid rgba(56, 189, 248, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 4px 20px -2px rgba(56, 189, 248, 0.35), 0 0 16px -2px rgba(56, 189, 248, 0.25), inset 0 1px 1px 0 rgba(255, 255, 255, 0.45);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
+}
+
+.btn--email::before,
 .btn--gold::before {
-  /* barrido de luz */
+  /* barrido de luz sobre el cristal */
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, .45) 50%, transparent 80%);
+  transform: translateX(-120%);
+  transition: transform .7s var(--ease);
+}
+
+.btn--email:hover,
+.btn--gold:hover {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.36) 0%, rgba(14, 165, 233, 0.22) 100%);
+  border-color: rgba(56, 189, 248, 0.95);
+  color: #ffffff !important;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px -4px rgba(56, 189, 248, 0.6), 0 0 24px 2px rgba(56, 189, 248, 0.4), inset 0 1px 1px 0 rgba(255, 255, 255, 0.65);
+}
+
+.btn--email:hover::before,
+.btn--gold:hover::before {
+  transform: translateX(120%)
+}
+
+.btn--email svg,
+.btn--gold svg {
+  fill: #e0f2fe;
+  filter: drop-shadow(0 2px 6px rgba(56, 189, 248, 0.6));
+}
+
+.btn--email:hover svg,
+.btn--gold:hover svg {
+  fill: #ffffff;
+}
+
+/* 2. WhatsApp Glassmorphism (Verde Esmeralda) */
+.btn--whatsapp {
+  background: linear-gradient(135deg, rgba(37, 211, 102, 0.22) 0%, rgba(18, 140, 126, 0.12) 100%);
+  color: #ffffff !important;
+  border: 1px solid rgba(37, 211, 102, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 4px 20px -2px rgba(37, 211, 102, 0.35), 0 0 16px -2px rgba(37, 211, 102, 0.25), inset 0 1px 1px 0 rgba(255, 255, 255, 0.45);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
+}
+
+.btn--whatsapp::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, .45) 50%, transparent 80%);
+  transform: translateX(-120%);
+  transition: transform .7s var(--ease);
+}
+
+.btn--whatsapp:hover {
+  background: linear-gradient(135deg, rgba(37, 211, 102, 0.36) 0%, rgba(18, 140, 126, 0.22) 100%);
+  border-color: rgba(37, 211, 102, 0.95);
+  color: #ffffff !important;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px -4px rgba(37, 211, 102, 0.6), 0 0 24px 2px rgba(37, 211, 102, 0.4), inset 0 1px 1px 0 rgba(255, 255, 255, 0.65);
+}
+
+.btn--whatsapp:hover::before {
+  transform: translateX(120%)
+}
+
+.btn--whatsapp svg {
+  fill: #dcfce7;
+  filter: drop-shadow(0 2px 6px rgba(37, 211, 102, 0.6));
+}
+
+.btn--whatsapp:hover svg {
+  fill: #ffffff;
+}
+
+/* 3. Instagram Glassmorphism (Magenta / Coral / Violeta) */
+.btn--instagram {
+  background: linear-gradient(135deg, rgba(244, 63, 94, 0.22) 0%, rgba(168, 85, 247, 0.12) 100%);
+  color: #ffffff !important;
+  border: 1px solid rgba(244, 63, 94, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 4px 20px -2px rgba(244, 63, 94, 0.35), 0 0 16px -2px rgba(244, 63, 94, 0.25), inset 0 1px 1px 0 rgba(255, 255, 255, 0.45);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
+}
+
+.btn--instagram::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, .45) 50%, transparent 80%);
+  transform: translateX(-120%);
+  transition: transform .7s var(--ease);
+}
+
+.btn--instagram:hover {
+  background: linear-gradient(135deg, rgba(244, 63, 94, 0.36) 0%, rgba(168, 85, 247, 0.22) 100%);
+  border-color: rgba(244, 63, 94, 0.95);
+  color: #ffffff !important;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px -4px rgba(244, 63, 94, 0.6), 0 0 24px 2px rgba(244, 63, 94, 0.4), inset 0 1px 1px 0 rgba(255, 255, 255, 0.65);
+}
+
+.btn--instagram:hover::before {
+  transform: translateX(120%)
+}
+
+.btn--instagram svg {
+  fill: #ffe4e6;
+  filter: drop-shadow(0 2px 6px rgba(244, 63, 94, 0.6));
+}
+
+.btn--instagram:hover svg {
+  fill: #ffffff;
+}
+
+/* 4. Telescopio Hero CTA (Celeste Claro Radiante Glassmorphic) */
+.btn--telescope {
+  background: linear-gradient(135deg, rgba(125, 211, 252, 0.55) 0%, rgba(56, 189, 248, 0.42) 50%, rgba(14, 165, 233, 0.30) 100%) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 8px 32px -4px rgba(56, 189, 248, 0.55), 0 0 22px 0 rgba(125, 211, 252, 0.4), inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.8) !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+  white-space: nowrap;
+}
+
+.btn--telescope::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -219,28 +365,33 @@ img {
   transition: transform .7s var(--ease);
 }
 
-.btn--gold:hover {
-  transform: translateY(-3px);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .5), 0 16px 46px -8px rgba(63, 127, 224, .7)
+.btn--telescope:hover {
+  background: linear-gradient(135deg, rgba(186, 230, 253, 0.72) 0%, rgba(56, 189, 248, 0.58) 50%, rgba(14, 165, 233, 0.45) 100%) !important;
+  border-color: #ffffff !important;
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 16px 48px -4px rgba(56, 189, 248, 0.75), 0 0 32px 4px rgba(125, 211, 252, 0.55), inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.9) !important;
 }
 
-.btn--gold:hover::before {
-  transform: translateX(120%)
+.btn--telescope:hover::before {
+  transform: translateX(120%);
 }
 
-/* Vidrio (glassmorphism) — para fondos oscuros */
+/* Vidrio genérico (glassmorphism neutro) */
 .btn--glass {
-  background: rgba(255, 255, 255, .07);
+  background: rgba(255, 255, 255, .08);
   color: #fff;
-  border-color: rgba(255, 255, 255, .22);
+  border-color: rgba(255, 255, 255, .25);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .btn--glass:hover {
-  background: rgba(255, 255, 255, .14);
-  border-color: rgba(255, 255, 255, .4);
-  transform: translateY(-3px)
+  background: rgba(255, 255, 255, .16);
+  color: #fff;
+  border-color: rgba(255, 255, 255, .45);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px -4px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
 
 /* Contorno con borde degradado neón + glow estilo Uiverse (Fondo Azul Oscuro) */
@@ -1355,7 +1506,7 @@ img {
   position: relative;
   z-index: 1;
   text-align: center;
-  max-width: 720px
+  max-width: 960px;
 }
 
 .cta h2 {
@@ -1374,7 +1525,12 @@ img {
   display: flex;
   gap: 14px;
   justify-content: center;
-  flex-wrap: wrap
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.cta__actions .btn {
+  padding: 14px 22px;
 }
 
 /* -------- Footer -------- */
@@ -1617,6 +1773,19 @@ img {
   .hero {
     padding: 56px 0 68px
   }
+
+  .cta__actions {
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 360px;
+    margin: 0 auto;
+    gap: 12px;
+  }
+
+  .cta__actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 @media (prefers-reduced-motion:reduce) {
@@ -1733,4 +1902,56 @@ img {
 #servicios .wrap {
   position: relative;
   z-index: 1;
+}
+
+/* =========================================================
+   BOTÓN FLOTANTE WHATSAPP
+   ========================================================= */
+.whatsapp-float {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+  color: #ffffff !important;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 6px 24px rgba(37, 211, 102, 0.45), 0 2px 8px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1) translateY(-3px);
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.6), 0 4px 12px rgba(0, 0, 0, 0.4);
+  color: #ffffff !important;
+}
+
+.whatsapp-float:active {
+  transform: scale(0.95);
+}
+
+.whatsapp-float svg {
+  width: 32px;
+  height: 32px;
+  fill: currentColor;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+}
+
+@media (max-width: 768px) {
+  .whatsapp-float {
+    bottom: 20px;
+    right: 20px;
+    width: 54px;
+    height: 54px;
+  }
+
+  .whatsapp-float svg {
+    width: 28px;
+    height: 28px;
+  }
 }
