@@ -1955,3 +1955,26 @@ img {
     height: 28px;
   }
 }
+
+/* ==========================================================================
+   Protección Anti-Screenshots y Anti-Impresión
+   ========================================================================== */
+
+/* 1. Desenfoque profundo al perder el foco (Win+Shift+S / Herramienta de recortes) */
+body.screenshot-protect {
+  filter: blur(30px) brightness(0.25) !important;
+  transition: filter 0.15s ease !important;
+  user-select: none !important;
+  pointer-events: none !important;
+}
+
+/* 2. Bloqueo total al imprimir o guardar en PDF (Ctrl+P) */
+@media print {
+  html, body {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    width: 0 !important;
+    overflow: hidden !important;
+  }
+}
