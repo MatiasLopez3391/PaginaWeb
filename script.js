@@ -51,6 +51,44 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
+  /* ---------- 2. Protección: Bloqueo de atajos y clic derecho ---------- */
+  // Bloquear menú contextual (clic derecho)
+  document.addEventListener('contextmenu', function (e) {
+    e.preventDefault();
+  });
+
+  // Evitar arrastre de imágenes
+  document.addEventListener('dragstart', function (e) {
+    if (e.target.tagName === 'IMG' || e.target.closest('img')) {
+      e.preventDefault();
+    }
+  });
+
+  // Bloquear F12, Ctrl+Shift+I/J/C, Ctrl+U, Ctrl+S (y equivalentes en Mac)
+  document.addEventListener('keydown', function (e) {
+    // Tecla F12
+    if (e.key === 'F12') {
+      e.preventDefault();
+      return false;
+    }
+
+    const isCtrlOrCmd = e.ctrlKey || e.metaKey;
+    const key = e.key ? e.key.toUpperCase() : '';
+
+    if (isCtrlOrCmd) {
+      // Inspector de elementos y consola (Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C)
+      if (e.shiftKey && (key === 'I' || key === 'J' || key === 'C')) {
+        e.preventDefault();
+        return false;
+      }
+      // Ver código fuente (Ctrl+U) y guardar página (Ctrl+S)
+      if (key === 'U' || key === 'S') {
+        e.preventDefault();
+        return false;
+      }
+    }
+  });
+
 
   /* ---------- 3. Animaciones al hacer scroll ---------- */
   const revealTargets = document.querySelectorAll(
