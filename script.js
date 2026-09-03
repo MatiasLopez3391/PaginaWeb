@@ -218,25 +218,46 @@ document.addEventListener('DOMContentLoaded', function () {
       particles[i].update();
       particles[i].draw();
     }
-    
-    requestAnimationFrame(animate);
   }
-  
+
+  let isVisible = true;
+  let animId = null;
+
+  function loop() {
+    if (!isVisible) return;
+    animate();
+    animId = requestAnimationFrame(loop);
+  }
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        var wasVisible = isVisible;
+        isVisible = entry.isIntersecting;
+        if (!wasVisible && isVisible) {
+          cancelAnimationFrame(animId);
+          animId = requestAnimationFrame(loop);
+        }
+      });
+    }, { threshold: 0.05 });
+    observer.observe(canvas);
+  }
+
   canvas.addEventListener('mousemove', function(e) {
     const rect = canvas.getBoundingClientRect();
     mouse.x = e.clientX - rect.left;
     mouse.y = e.clientY - rect.top;
   });
-  
+
   canvas.addEventListener('mouseleave', function() {
     mouse.x = null;
     mouse.y = null;
   });
-  
+
   // Iniciar al cargar (pequeño retraso para asegurar dimensiones correctas)
   setTimeout(() => {
     init();
-    animate();
+    loop();
   }, 50);
 })();
 
@@ -304,7 +325,10 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   let frame = 0;
-  function draw() {
+  let isVisible = true;
+  let animId = null;
+
+  function render() {
     ctx.clearRect(0, 0, W, H);
     frame++;
     stars.forEach(s => {
@@ -313,13 +337,32 @@ document.addEventListener('DOMContentLoaded', function () {
       const opacity = s.baseOpacity + twinkle * s.baseOpacity * 0.5;
       drawStar(s.x, s.y, s.r, Math.max(0, opacity), s.blur);
     });
-    requestAnimationFrame(draw);
+  }
+
+  function loop() {
+    if (!isVisible) return;
+    render();
+    animId = requestAnimationFrame(loop);
+  }
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        var wasVisible = isVisible;
+        isVisible = entry.isIntersecting;
+        if (!wasVisible && isVisible) {
+          cancelAnimationFrame(animId);
+          animId = requestAnimationFrame(loop);
+        }
+      });
+    }, { threshold: 0.05 });
+    observer.observe(canvas);
   }
 
   function init() {
     resize();
     spawnStars();
-    draw();
+    loop();
   }
 
   window.addEventListener('resize', () => { resize(); spawnStars(); });
@@ -464,7 +507,10 @@ document.addEventListener('DOMContentLoaded', function () {
   (function frame(t) {
     requestAnimationFrame(frame);
     var time = t / 1000;
-    if (heroField) heroField.draw(time);
+    if (heroField) {
+      var hr = heroCanvas.getBoundingClientRect();
+      if (hr.bottom > -100 && hr.top < window.innerHeight + 100) heroField.draw(time);
+    }
     if (navField && parseFloat(navCanvas.style.opacity || 0) > 0.01) navField.draw(time);
     for (var i = 0; i < sectionFields.length; i++) {
       var f = sectionFields[i];
