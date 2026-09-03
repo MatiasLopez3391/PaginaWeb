@@ -238,9 +238,38 @@ img {
 }
 
 .btn--glass:hover {
-  background: rgba(255, 255, 255, .14);
+  background: rgba(255, 255, 255, .15);
+  color: #fff;
   border-color: rgba(255, 255, 255, .4);
-  transform: translateY(-3px)
+  transform: translateY(-2px)
+}
+
+/* WhatsApp Glassmorphism */
+.btn--whatsapp {
+  background: rgba(37, 211, 102, 0.14);
+  color: #ffffff !important;
+  border-color: rgba(37, 211, 102, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px -2px rgba(37, 211, 102, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn--whatsapp:hover {
+  background: rgba(37, 211, 102, 0.26);
+  border-color: rgba(37, 211, 102, 0.7);
+  color: #ffffff !important;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px -4px rgba(37, 211, 102, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.btn--whatsapp svg {
+  fill: #25d366;
+  transition: transform 0.3s var(--ease), fill 0.3s ease;
+}
+
+.btn--whatsapp:hover svg {
+  fill: #4ade80;
+  transform: scale(1.1);
 }
 
 /* Contorno con borde degradado neón + glow estilo Uiverse (Fondo Azul Oscuro) */
@@ -1733,4 +1762,56 @@ img {
 #servicios .wrap {
   position: relative;
   z-index: 1;
+}
+
+/* =========================================================
+   BOTÓN FLOTANTE WHATSAPP
+   ========================================================= */
+.whatsapp-float {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+  color: #ffffff !important;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 6px 24px rgba(37, 211, 102, 0.45), 0 2px 8px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1) translateY(-3px);
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.6), 0 4px 12px rgba(0, 0, 0, 0.4);
+  color: #ffffff !important;
+}
+
+.whatsapp-float:active {
+  transform: scale(0.95);
+}
+
+.whatsapp-float svg {
+  width: 32px;
+  height: 32px;
+  fill: currentColor;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+}
+
+@media (max-width: 768px) {
+  .whatsapp-float {
+    bottom: 20px;
+    right: 20px;
+    width: 54px;
+    height: 54px;
+  }
+
+  .whatsapp-float svg {
+    width: 28px;
+    height: 28px;
+  }
 }
