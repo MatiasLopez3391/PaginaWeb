@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  /* ---------- 2. Protección: Bloqueo de atajos y clic derecho ---------- */
+  /* ---------- 2. Protección: Bloqueo de atajos, clic derecho y screenshots ---------- */
   // Bloquear menú contextual (clic derecho)
   document.addEventListener('contextmenu', function (e) {
     e.preventDefault();
@@ -64,11 +64,20 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // Bloquear F12, Ctrl+Shift+I/J/C, Ctrl+U, Ctrl+S (y equivalentes en Mac)
+  // Bloquear F12, PrintScreen, Ctrl+Shift+I/J/C, Ctrl+U, Ctrl+S, Ctrl+P (Imprimir)
   document.addEventListener('keydown', function (e) {
     // Tecla F12
     if (e.key === 'F12') {
       e.preventDefault();
+      return false;
+    }
+
+    // Tecla PrintScreen (Impr Pant)
+    if (e.key === 'PrintScreen') {
+      e.preventDefault();
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText('').catch(function () {});
+      }
       return false;
     }
 
@@ -81,11 +90,37 @@ document.addEventListener('DOMContentLoaded', function () {
         e.preventDefault();
         return false;
       }
-      // Ver código fuente (Ctrl+U) y guardar página (Ctrl+S)
-      if (key === 'U' || key === 'S') {
+      // Ver código fuente (Ctrl+U), guardar página (Ctrl+S), imprimir a PDF/papel (Ctrl+P)
+      if (key === 'U' || key === 'S' || key === 'P') {
         e.preventDefault();
         return false;
       }
+    }
+  });
+
+  // Vaciar portapapeles en keyup de PrintScreen
+  window.addEventListener('keyup', function (e) {
+    if (e.key === 'PrintScreen') {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText('').catch(function () {});
+      }
+    }
+  });
+
+  // Anti-Screenshot: Desenfoque profundo cuando la ventana pierde el foco (Win+Shift+S / Recortes / Programas externos)
+  window.addEventListener('blur', function () {
+    document.body.classList.add('screenshot-protect');
+  });
+
+  window.addEventListener('focus', function () {
+    document.body.classList.remove('screenshot-protect');
+  });
+
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) {
+      document.body.classList.add('screenshot-protect');
+    } else {
+      document.body.classList.remove('screenshot-protect');
     }
   });
 
